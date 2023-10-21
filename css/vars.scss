@@ -1,0 +1,22 @@
+$container: 1230px;
+
+// === colors ===
+$color1: rgb(25, 22, 22);
+$color2: rgb(241, 241, 241);
+
+%container {
+  max-width: $container;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+%page-layout {
+  margin-bottom: 30px;
+
+  h1 {
+    text-align: center;
+    font-weight: 700;
+    font-size: 30px;
+    margin-bottom: 40px;
+  }
+}
