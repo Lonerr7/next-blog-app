@@ -1,0 +1,34 @@
+@import '../../css/vars';
+
+.nav {
+  &__list {
+    margin: 0 auto;
+    max-width: 300px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+}
+
+.list {
+  &__item {
+    margin-right: 10px;
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+
+  &__link {
+    color: $color2;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  &__link_active {
+    font-weight: 700;
+  }
+}

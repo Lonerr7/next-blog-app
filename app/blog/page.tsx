@@ -1,30 +1,29 @@
-import Post from '@/components/Post/Post';
+'use client';
+
+import PostSearch from '@/components/PostSearch/PostSearch';
+import Posts from '@/components/Posts/Posts';
+import { getAllPosts } from '@/services/getPosts';
 import { PostInterface } from '@/types/appTypes';
-import { Metadata } from 'next';
+import { useEffect, useState } from 'react';
 
-const getPostsData = async (): Promise<Array<PostInterface>> => {
-  const response = await fetch('https://jsonplaceholder.typicode.com/posts', {
-    next: {
-      revalidate: 60,
-    },
-  });
+const Blog: React.FC = () => {
+  const [posts, setPosts] = useState<Array<PostInterface>>([]);
+  const [loading, setLoading] = useState(false);
 
-  return response.json();
-};
-
-export const metadata: Metadata = {
-  title: 'Blog | Next App',
-};
-
-const Blog: React.FC = async () => {
-  const posts = await getPostsData();
-
-  const postElements = posts.map((post) => <Post key={post.id} post={post} />);
+  useEffect(() => {
+    (async () => {
+      setLoading(true);
+      const posts = await getAllPosts();
+      setLoading(false);
+      setPosts(posts);
+    })();
+  }, []);
 
   return (
     <div>
       <h1>Blog</h1>
-      <ul>{postElements}</ul>
+      <PostSearch onSearch={setPosts} />
+      {loading ? <h3>Loading...</h3> : <Posts posts={posts} />}
     </div>
   );
 };
