@@ -2,15 +2,11 @@
 
 import { FormEvent, useState } from 'react';
 import s from './PostSearch.module.scss';
-import { getPostsBySearch } from '@/services/getPosts';
-import { PostInterface } from '@/types/appTypes';
+import { usePosts } from '@/store/store';
 
-interface Props {
-  onSearch: (posts: Array<PostInterface>) => void;
-}
-
-const PostSearch: React.FC<Props> = ({ onSearch }) => {
+const PostSearch: React.FC = () => {
   const [search, setSearch] = useState('');
+  const getPostsBySearch = usePosts((state) => state.getPostsBySearch);
 
   const selectHandler = (e: React.FormEvent<HTMLInputElement>) => {
     setSearch(e.currentTarget.value);
@@ -19,8 +15,7 @@ const PostSearch: React.FC<Props> = ({ onSearch }) => {
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const postsBySearch = await getPostsBySearch(search);
-    onSearch(postsBySearch);
+    await getPostsBySearch(search);
   };
 
   return (

@@ -1,14 +1,33 @@
-import { PostInterface } from '@/types/appTypes';
+'use client';
+
 import Post from '../Post/Post';
+import { usePosts } from '@/store/store';
+import { useEffect } from 'react';
+import { shallow } from 'zustand/shallow';
 
-interface Props {
-  posts: Array<PostInterface>;
-}
+const Posts: React.FC = () => {
+  const [posts, loading, getAllPosts] = usePosts(
+    (state) => [state.posts, state.loading, state.getAllPosts],
+    shallow
+  );
 
-const Posts: React.FC<Props> = ({ posts }) => {
-  const postElements = posts.map((post) => <Post key={post.id} post={post} />);
+  useEffect(() => {
+    getAllPosts();
+  }, []);
 
-  return <ul>{postElements}</ul>;
+  return (
+    <>
+      {loading ? (
+        <h3>Loading...</h3>
+      ) : (
+        <ul>
+          {posts.map((post) => (
+            <Post key={post.id} post={post} />
+          ))}
+        </ul>
+      )}
+    </>
+  );
 };
 
 export default Posts;
