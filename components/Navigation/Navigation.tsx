@@ -55,7 +55,7 @@ const Navigation: React.FC = () => {
             <li className={s.list__item}>
               <Link
                 className={
-                  pathname === '/about'
+                  pathname === '/profile'
                     ? `${s.list__link} ${s.list__link_active}`
                     : `${s.list__link}`
                 }
