@@ -1,0 +1,14 @@
+.signin {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  &__googleBtn {
+    padding: 10px 15px;
+    background-color: rgb(84, 84, 202);
+    border-radius: 5px;
+    color: #fff;
+    margin-bottom: 30px;
+  }
+}

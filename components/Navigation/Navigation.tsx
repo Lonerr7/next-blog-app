@@ -57,7 +57,7 @@ const Navigation: React.FC = () => {
                 className={
                   pathname === '/profile'
                     ? `${s.list__link} ${s.list__link_active}`
-                    : `${s.list__link}`
+                    : `${s.list__link}` 
                 }
                 href="/profile"
               >
@@ -84,7 +84,7 @@ const Navigation: React.FC = () => {
                   ? `${s.list__link} ${s.list__link_active}`
                   : `${s.list__link}`
               }
-              href="/api/auth/signin"
+              href="/signin"
             >
               Sign In
             </Link>
